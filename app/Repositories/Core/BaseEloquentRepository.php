@@ -11,21 +11,30 @@ class BaseEloquentRepository implements RepositoryInterface
     {
         $this->entity = $this->resolveEntity();
     }
-	public function getAll(){
+	public function getAll()
+	{
 		return $this->entity->all();
 	}
 
-	public function store($request){
-		$this->entity->create($request);
-	}
-
-
-	public function edit($id){
+	public function getEntity($id)
+	{
 		return $this->entity->find($id);
 	}
 
-	public function destroy($id){
-		$this->entity->where('id', $id)->delete();
+	public function store($request)
+	{
+		return $this->entity->create($request);
+	}
+
+
+	public function update($request)
+	{
+		return $this->entity->where('id', $request->id)->update($request->except('id'));
+	}
+
+	public function delete($id)
+	{
+		return $this->entity->where('id', $id)->delete();
 	}
 
     public function resolveEntity(){

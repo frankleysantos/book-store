@@ -4,9 +4,11 @@ interface RepositoryInterface{
 	
 	public function getAll();
 
+	public function getEntity($id);
+
 	public function store($request);
 
-	public function edit($id);
+	public function update($request);
 
-	public function destroy($id);
+	public function delete($id);
 }
