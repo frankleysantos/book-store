@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BookRequest;
 use App\Repositories\Contracts\BookRepositoryInterface;
-use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -15,13 +15,13 @@ class BookController extends Controller
         $this->book = $bookInterface;
     }
 
-    public function store(Request $request) 
+    public function store(BookRequest $bookRequest) 
     {
-        $book = $this->book->store($request->all());
+        $book = $this->book->store($bookRequest->all());
         return response()->json($book);
     }
 
-    public function update(Request $request) 
+    public function update(BookRequest $request) 
     {
         $book = $this->book->update($request);
         return response()->json($book);
